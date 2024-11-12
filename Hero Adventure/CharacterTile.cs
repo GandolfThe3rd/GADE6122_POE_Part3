@@ -13,6 +13,7 @@ namespace Hero_Adventure
         public int attackPower;
         public Tile[] vision;
         public bool isDead;
+        private int doubleDamageCount = 0;
 
         public Position characterPosition;
 
@@ -29,7 +30,7 @@ namespace Hero_Adventure
         public void UpdateVision(Level aLevel)
         {
             //Position heroPos = aLevel.Hero.Position;
-            Position heroPos = Position; // fixed this bitch!!
+            Position heroPos = Position; // fixed this
 
             vision[0] = aLevel.tiles[heroPos.X, heroPos.Y - 1]; // 0
             vision[1] = aLevel.tiles[heroPos.X + 1, heroPos.Y]; // 1
@@ -53,7 +54,15 @@ namespace Hero_Adventure
 
         public void Attack(CharacterTile opponent)
         {
-            opponent.TakeDamage(attackPower);
+            if(doubleDamageCount > 0)
+            {
+                opponent.TakeDamage(attackPower * 2);
+                doubleDamageCount--;
+            }
+            else
+            {
+                opponent.TakeDamage(attackPower);
+            }
         }
 
         public bool IsDead
@@ -80,6 +89,11 @@ namespace Hero_Adventure
             {
                 hitPoints = maximumHitPoints;
             }
+        }
+
+        public void SetDoubleDamage(int noOfAttacks)
+        {
+            doubleDamageCount += noOfAttacks;
         }
     }
 }

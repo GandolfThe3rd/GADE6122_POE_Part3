@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Hero_Adventure
 {
-    internal class GruntTile : EnemyTile
+    public class TyrantTile : EnemyTile
     {
-        Random random = new Random();
-        public Tile targetTile;
-
-        public GruntTile(Position position, Level level) : base (position, 10, 1, level)
+        public TyrantTile(Position position, Level level) : base (position, 15, 5, level)
         {
-            
+
         }
+
+        Random random = new Random();
 
         public override char Display
         {
@@ -25,7 +23,7 @@ namespace Hero_Adventure
                 {
                     case false:
                         {
-                            return Convert.ToChar("Ϫ");
+                            return Convert.ToChar("§");
                         }
                     default:
                         {
@@ -59,8 +57,8 @@ namespace Hero_Adventure
                 {
 
                     result = Vision[random.Next(0, 4)];
-                    
-                    if(result is  EmptyTile)
+
+                    if (result is EmptyTile)
                     {
                         loop = false;
                     }
@@ -70,8 +68,8 @@ namespace Hero_Adventure
                     }
 
                 }
-                    targetTile = result;
-                    return true;
+                targetTile = result;
+                return true;
             }
         }
 
@@ -149,6 +147,5 @@ namespace Hero_Adventure
 
             return targets;
         }
-
     }
 }

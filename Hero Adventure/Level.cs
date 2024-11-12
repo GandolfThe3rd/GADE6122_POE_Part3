@@ -123,15 +123,14 @@ namespace Hero_Adventure
                     }
                 case TileType.Enemy:
                     {
+                        CreateEnemyTile(aPosition); //-------------------------------------------------------------------------
                         GruntTile tile = new GruntTile(aPosition);
                         tiles[aPosition.X, aPosition.Y] = tile;
                         return tile;
                     }
                 case TileType.Pickup:
                     {
-                        HealthPickup tile = new HealthPickup(aPosition);
-                        tiles[aPosition.X, aPosition.Y] = tile;
-                        return tile;
+                        return CreatepickupTile(aPosition);
                     }
                 default:
                     {
@@ -146,6 +145,31 @@ namespace Hero_Adventure
         {
             Position position = new Position(aX, aY);
             return CreateTile(aTileType, position);
+        }
+
+        private EnemyTile CreateEnemyTile(Position position, Level level)
+        {
+            int roll = random.Next(1,11);
+
+            // if roll 1-5 then Grunt spawns
+            // if roll 6-8 then Warlock spawns
+            // if roll 8-10 then Tyrant spawns
+
+            if (roll >= 5)
+            {
+                GruntTile enemy = new GruntTile(position, level);
+                return enemy;
+            }
+            else if (roll >= 8)
+            {
+                WarlockTile enemy = new WarlockTile(position, level);
+                return enemy;
+            }
+            else
+            {
+                TyrantTile enemy = new TyrantTile(position, level);
+                return enemy;
+            }
         }
 
         public void InitialiseTiles()
@@ -245,6 +269,23 @@ namespace Hero_Adventure
             for (int y = 0; y < enemies.Length; y++)
             {
                 enemies[y].UpdateVision(this);
+            }
+        }
+
+        private PickupTile CreatepickupTile(Position position)
+        {
+            Random random = new Random();
+            int roll = random.Next(1, 4);
+
+            // if roll = 1, then attack buff spawns
+            // if roll = 2 or 3 then health pickup spawns
+
+            switch(roll)
+            {
+                case 1:
+                    return new HealthPickup(position);
+                default:
+                    return new AttackBuffPickupTile(position);
             }
         }
 

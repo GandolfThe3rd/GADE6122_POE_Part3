@@ -9,10 +9,12 @@ namespace Hero_Adventure
 {
     public abstract class EnemyTile :CharacterTile
     {
-        public EnemyTile(Position position, int hitPoints, int attackPower) : base(position, hitPoints, attackPower)
+        public EnemyTile(Position position, int hitPoints, int attackPower, Level level) : base(position, hitPoints, attackPower)
         {
-
+            this.level = level;
         }
+
+        protected Level level;
 
         public abstract bool GetMove(out Tile targetTile);
 

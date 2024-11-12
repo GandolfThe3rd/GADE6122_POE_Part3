@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Hero_Adventure
 {
-    internal class GruntTile : EnemyTile
+    internal class WarlockTile : EnemyTile
     {
-        Random random = new Random();
-        public Tile targetTile;
-
-        public GruntTile(Position position, Level level) : base (position, 10, 1, level)
+        public WarlockTile(Position position, Level level) : base(position, 10, 5, level)
         {
-            
+
         }
 
         public override char Display
@@ -25,7 +21,7 @@ namespace Hero_Adventure
                 {
                     case false:
                         {
-                            return Convert.ToChar("Ϫ");
+                            return Convert.ToChar("ᐂ");
                         }
                     default:
                         {
@@ -37,68 +33,17 @@ namespace Hero_Adventure
 
         public override bool GetMove(out Tile targetTile)
         {
-            bool check = false;
-            Tile result = null;
-
-
-            if (vision[0] is EmptyTile || vision[1] is EmptyTile || vision[2] is EmptyTile || vision[3] is EmptyTile)
-            {
-                check = true;
-            }
-
-            if (check == false)
-            {
-                targetTile = null;
-                return false;
-            }
-            else
-            {
-                bool loop = true;
-
-                while (loop)
-                {
-
-                    result = Vision[random.Next(0, 4)];
-                    
-                    if(result is  EmptyTile)
-                    {
-                        loop = false;
-                    }
-                    else
-                    {
-                        loop = true;
-                    }
-
-                }
-                    targetTile = result;
-                    return true;
-            }
+            targetTile = null;
+            return false;
         }
 
         public override CharacterTile[] GetTargets()
         {
             int noOfTargets = 0;
 
-            if (vision[0] is HeroTile)
-            {
-                noOfTargets++;
-            }
-            else if (vision[1] is HeroTile)
-            {
-                noOfTargets++;
-            }
-            else if (vision[2] is HeroTile)
-            {
-                noOfTargets++;
-            }
-            else if (vision[3] is HeroTile)
-            {
-                noOfTargets++;
-            }
-
             CharacterTile[] targets = new CharacterTile[noOfTargets];
 
-            if (vision[0] is HeroTile)
+            if (vision[0] is CharacterTile)
             {
                 if (targets[0] == null)
                 {
@@ -110,7 +55,7 @@ namespace Hero_Adventure
                     targets[noOfTargets - 1] = (CharacterTile)vision[0];
                 }
             }
-            else if (vision[1] is HeroTile)
+            else if (vision[1] is CharacterTile)
             {
                 if (targets[0] == null)
                 {
@@ -122,7 +67,7 @@ namespace Hero_Adventure
                     targets[noOfTargets - 1] = (CharacterTile)vision[1];
                 }
             }
-            else if (vision[2] is HeroTile)
+            else if (vision[2] is CharacterTile)
             {
                 if (targets[0] == null)
                 {
@@ -134,7 +79,7 @@ namespace Hero_Adventure
                     targets[noOfTargets - 1] = (CharacterTile)vision[2];
                 }
             }
-            else if (targets[3] is HeroTile)
+            else if (targets[3] is CharacterTile)
             {
                 if (vision[0] == null)
                 {
@@ -149,6 +94,5 @@ namespace Hero_Adventure
 
             return targets;
         }
-
     }
 }
