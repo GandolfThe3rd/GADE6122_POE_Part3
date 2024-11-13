@@ -39,6 +39,8 @@
             this.btnAttackDown = new System.Windows.Forms.Button();
             this.btnAttackRight = new System.Windows.Forms.Button();
             this.lblHeroStats = new System.Windows.Forms.Label();
+            this.btnSaveGame = new System.Windows.Forms.Button();
+            this.btnLoadGame = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblDisplay
@@ -149,11 +151,33 @@
             this.lblHeroStats.TabIndex = 10;
             this.lblHeroStats.Text = "label1";
             // 
+            // btnSaveGame
+            // 
+            this.btnSaveGame.Location = new System.Drawing.Point(729, 453);
+            this.btnSaveGame.Name = "btnSaveGame";
+            this.btnSaveGame.Size = new System.Drawing.Size(140, 42);
+            this.btnSaveGame.TabIndex = 11;
+            this.btnSaveGame.Text = "Save";
+            this.btnSaveGame.UseVisualStyleBackColor = true;
+            this.btnSaveGame.Click += new System.EventHandler(this.btnSaveGame_Click_1);
+            // 
+            // btnLoadGame
+            // 
+            this.btnLoadGame.Location = new System.Drawing.Point(729, 501);
+            this.btnLoadGame.Name = "btnLoadGame";
+            this.btnLoadGame.Size = new System.Drawing.Size(140, 42);
+            this.btnLoadGame.TabIndex = 12;
+            this.btnLoadGame.Text = "Load";
+            this.btnLoadGame.UseVisualStyleBackColor = true;
+            this.btnLoadGame.Click += new System.EventHandler(this.btnLoadGame_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(951, 592);
+            this.Controls.Add(this.btnLoadGame);
+            this.Controls.Add(this.btnSaveGame);
             this.Controls.Add(this.lblHeroStats);
             this.Controls.Add(this.btnAttackRight);
             this.Controls.Add(this.btnAttackDown);
@@ -186,6 +210,8 @@
         private System.Windows.Forms.Button btnAttackDown;
         private System.Windows.Forms.Button btnAttackRight;
         private System.Windows.Forms.Label lblHeroStats;
+        private System.Windows.Forms.Button btnSaveGame;
+        private System.Windows.Forms.Button btnLoadGame;
     }
 }
 

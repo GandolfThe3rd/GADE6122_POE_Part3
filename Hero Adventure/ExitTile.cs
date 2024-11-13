@@ -8,6 +8,14 @@ namespace Hero_Adventure
 {
     public class ExitTile : Tile
     {
+        private bool doorLock;
+
+        public bool DoorLock
+        {
+        get { return doorLock; }
+        set { doorLock = value; }
+        }
+
         public ExitTile(Position aPosition) : base(aPosition)
         {
 
@@ -15,7 +23,17 @@ namespace Hero_Adventure
 
         public override char Display
         {
-            get { return Convert.ToChar("▒"); }
+            get
+            {
+                if (doorLock)
+                {
+                    return Convert.ToChar("▓");
+                }
+                else
+                {
+                    return Convert.ToChar("▒");
+                }
+            }
         }
     }
 }

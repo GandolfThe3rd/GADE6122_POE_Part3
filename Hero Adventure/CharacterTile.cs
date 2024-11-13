@@ -82,6 +82,12 @@ namespace Hero_Adventure
             set { vision = value; }
         }
 
+        public int DoubleDamageCount
+        {
+            get { return doubleDamageCount; }
+            set { doubleDamageCount = value; }
+        }
+
         public void Heal(int healAmmount)
         {
             hitPoints += healAmmount;

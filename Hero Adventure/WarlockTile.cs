@@ -39,60 +39,43 @@ namespace Hero_Adventure
 
         public override CharacterTile[] GetTargets()
         {
-            int noOfTargets = 0;
+            List<CharacterTile> targets = new List<CharacterTile>();
 
-            CharacterTile[] targets = new CharacterTile[noOfTargets];
-
-            if (vision[0] is CharacterTile)
+            if (level.Tiles[X - 1, Y] is CharacterTile)
             {
-                if (targets[0] == null)
-                {
-                    targets[noOfTargets - 1] = (CharacterTile)vision[0];
-                }
-                else
-                {
-                    noOfTargets--;
-                    targets[noOfTargets - 1] = (CharacterTile)vision[0];
-                }
+                targets.Add((CharacterTile)level.Tiles[X - 1, Y]);
             }
-            else if (vision[1] is CharacterTile)
+            else if (level.Tiles[X + 1, Y] is CharacterTile)
             {
-                if (targets[0] == null)
-                {
-                    targets[noOfTargets - 1] = (CharacterTile)vision[1];
-                }
-                else
-                {
-                    noOfTargets--;
-                    targets[noOfTargets - 1] = (CharacterTile)vision[1];
-                }
+                targets.Add((CharacterTile)level.Tiles[X + 1, Y]);
             }
-            else if (vision[2] is CharacterTile)
+            else if (level.Tiles[X, Y - 1] is CharacterTile)
             {
-                if (targets[0] == null)
-                {
-                    targets[noOfTargets - 1] = (CharacterTile)vision[2];
-                }
-                else
-                {
-                    noOfTargets--;
-                    targets[noOfTargets - 1] = (CharacterTile)vision[2];
-                }
+                targets.Add((CharacterTile)level.Tiles[X, Y -1]);
             }
-            else if (targets[3] is CharacterTile)
+            else if (level.Tiles[X, Y + 1] is CharacterTile)
             {
-                if (vision[0] == null)
-                {
-                    targets[noOfTargets - 1] = (CharacterTile)vision[3];
-                }
-                else
-                {
-                    noOfTargets--;
-                    targets[noOfTargets - 1] = (CharacterTile)vision[3];
-                }
+                targets.Add((CharacterTile)level.Tiles[X, Y + 1]);
+            }
+            else if (level.Tiles[X -1, Y - 1] is CharacterTile)
+            {
+                targets.Add((CharacterTile)level.Tiles[X - 1, Y - 1]);
+            }
+            else if (level.Tiles[X - 1, Y + 1] is CharacterTile)
+            {
+                targets.Add((CharacterTile)level.Tiles[X - 1, Y + 1]);
+            }
+            else if (level.Tiles[X + 1, Y - 1] is CharacterTile)
+            {
+                targets.Add((CharacterTile)level.Tiles[X + 1, Y - 1]);
+            }
+            else if (level.Tiles[X + 1, Y + 1] is CharacterTile)
+            {
+                targets.Add((CharacterTile)level.Tiles[X + 1, Y + 1]);
             }
 
-            return targets;
+            CharacterTile[] targetsArray = targets.ToArray();
+            return targetsArray;
         }
     }
 }

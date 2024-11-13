@@ -22,6 +22,7 @@ namespace Hero_Adventure
         public PickupTile[] PickupTiles
         {
             get { return pickupTiles; }
+            set { pickupTiles = value; }
         }
 
         public int Width
@@ -123,10 +124,7 @@ namespace Hero_Adventure
                     }
                 case TileType.Enemy:
                     {
-                        CreateEnemyTile(aPosition); //-------------------------------------------------------------------------
-                        GruntTile tile = new GruntTile(aPosition);
-                        tiles[aPosition.X, aPosition.Y] = tile;
-                        return tile;
+                        return CreateEnemyTile(aPosition, this);
                     }
                 case TileType.Pickup:
                     {
@@ -289,6 +287,31 @@ namespace Hero_Adventure
             }
         }
 
+        public void UpdateExit()
+        {
+            int noOfEnemies = 0;
+
+            for (int h = 0; h < Height; h++)
+            {
+                for (int w = 0; w < Width; w++)
+                {
+                    if(tiles[w,h] is EnemyTile)
+                    {
+                        noOfEnemies++;
+                    }
+                }
+            }
+
+            if (noOfEnemies > 0)
+            {
+                exit.DoorLock = true;
+            }
+            else
+            {
+                exit.DoorLock = false;
+            }
+        }
+
         public ExitTile Exit
         { get { return exit; } }
 
@@ -301,6 +324,7 @@ namespace Hero_Adventure
         public EnemyTile[] Enemies
         {
             get { return enemies; }
+            set { enemies = value; }
         }
     }
 }

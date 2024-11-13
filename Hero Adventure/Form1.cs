@@ -85,5 +85,19 @@ namespace Hero_Adventure
             engine.TriggerAttack(Direction.Left);
             UpdateDisplay();
         }
+
+        private void btnSaveGame_Click_1(object sender, EventArgs e)
+        {
+            engine.SaveGame(engine.NoOfLevels, engine.CurrentLevel, engine.Level.ToString(), engine.Level.Tiles, engine.Level.Hero, engine.Level.Enemies);
+            btnSaveGame.Enabled = false;
+            btnLoadGame.Enabled = false;
+        }
+
+        private void btnLoadGame_Click_1(object sender, EventArgs e)
+        {
+            engine.LoadGame();
+            btnLoadGame.Enabled = false;
+            UpdateDisplay();
+        }
     }
 }
